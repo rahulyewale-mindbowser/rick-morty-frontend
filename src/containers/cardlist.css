@@ -1,0 +1,18 @@
+.cardlist{
+    display: grid;
+}
+.filterlist{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+    /* height: 30rem; */
+
+}
+.filterButton{
+    width: 10rem;
+    height: 3rem;
+}
+
+

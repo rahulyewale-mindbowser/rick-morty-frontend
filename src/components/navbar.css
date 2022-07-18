@@ -1,0 +1,28 @@
+
+ li{
+    list-style-type: none;
+    padding: .5em;
+    text-decoration: none;
+}
+a{
+    color: rgb(15, 13, 13);
+    text-decoration: none;
+    font-size: 100%;
+
+}
+
+ul h1{
+    margin-right: 40%;
+    color: blue;
+    padding-top: 10%;
+}
+
+h2{
+    margin-right: 10%;
+    
+}
+
+.link-active {
+    color: rgb(247, 213, 194);
+    text-decoration: underline;
+  }
