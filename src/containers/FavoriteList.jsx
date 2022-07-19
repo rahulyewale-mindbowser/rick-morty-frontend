@@ -2,8 +2,8 @@ import React from "react";
 // import { Grid } from "@material-ui/core";
 import Grid from "@mui/material/Grid"
 import { useDispatch, useSelector } from "react-redux";
-import CharacterCard from '../components/CharacterCard';
-// import FavoriteCard from "../components/FavoriteCard";
+// import CharacterCard from '../components/CharacterCard';
+import FavoriteCard from "../components/FavoriteCard";
 import { Box } from "@mui/material";
 import { useEffect } from "react";
 import { getFavourites } from "../redux/features/favoriteSlice";
@@ -12,7 +12,7 @@ const FavoriteList = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getFavourites());
-  },[dispatch]);
+  }, [dispatch]);
   const FavoriteList = useSelector((state) => state.favouriteList.favourites);
   //   const {favorites} =FavoriteList
   console.log(FavoriteList);
@@ -26,7 +26,7 @@ const FavoriteList = () => {
                 {
                   // console.log(ele)
                 }
-                <CharacterCard key={"card_key" + ele} data={ele} />
+                <FavoriteCard key={"card_key" + ele} data={ele} />
               </Grid>
             );
           })}

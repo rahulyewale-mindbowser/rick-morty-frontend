@@ -75,7 +75,7 @@ export default function Register() {
       // setLogin(true);
       console.log(result);
       alert("User Registered successfully")
-      navigate('../login')
+      navigate('../')
     })
     .catch((error) => {
       error = new Error();

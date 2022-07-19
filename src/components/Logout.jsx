@@ -18,7 +18,7 @@ const Logout = () => {
     
       const handleNo = () => {
         setOpen(false);
-        navigate('../')
+        navigate('../characters')
         
       };
   return (

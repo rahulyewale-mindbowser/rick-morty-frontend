@@ -135,7 +135,6 @@ import Tooltip from '@mui/material/Tooltip';
 import { useDispatch } from "react-redux";
 import { getFavourites } from "../redux/features/favoriteSlice";
 
-
 const validationSchema = yup.object({
   email: yup
     .string("Enter your email")
@@ -150,7 +149,10 @@ const validationSchema = yup.object({
 const theme = createTheme();
 
 export default function Login() {
-const dispatch = useDispatch()
+  const dispatch = useDispatch()
+  React.useEffect(()=>{
+dispatch(getFavourites())
+  },[dispatch])
   const [showPassword, setShowPassword] =React.useState(false);
 const handleClickShowPassword = () => setShowPassword(!showPassword);
 const handleMouseDownPassword = () => setShowPassword(!showPassword);
@@ -181,18 +183,18 @@ const handleMouseDownPassword = () => setShowPassword(!showPassword);
     axios(configuration)
     .then((result) => {
       // setLogin(true);
-      // if (result.data.token) {
+      if (result.data.token) {
         console.log(result);
         localStorage.setItem("user", JSON.stringify(result.data));
-      // }
+      }
       console.log(result);
       alert("login successful")
+      navigate('../favorite')
       dispatch(getFavourites());
-      navigate('../')
     })
     .catch((error) => {
       // error = new Error();
-      console.log(error);
+      // console.log(error);
       setRes(error.response.data.message);
       alert(res)
     });

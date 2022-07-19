@@ -13,11 +13,11 @@ const user = JSON.parse(localStorage.getItem('user'));
 export const getFavourites = createAsyncThunk(
   "favourites/getfavourites",
   async (arg, { getState }) => {
-    const state = getState();
+    // const state = getState();
     // console.log("state", state);
     const response = await axios.get(
-      // `https://nodejs-mongodb-rickmorty.herokuapp.com/rick-morty/favourites?uid=${user.id}`
-      `http://localhost:8080/rick-morty/favourites?uid=${user.id}`,
+      `https://nodejs-mongodb-rickmorty.herokuapp.com/rick-morty/favourites?uid=${user.id}`,
+      // `http://localhost:8080/rick-morty/favourites?uid=${user.id}`,
       {headers: authHeader()}
     );
     return response.data.data;
