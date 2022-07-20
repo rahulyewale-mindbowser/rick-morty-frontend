@@ -7,6 +7,7 @@ import RequireAuth from "./components/RequireAuth";
 
 const CardList = React.lazy(() => import("./containers/CardList"));
 const FavoriteList = React.lazy(() => import("./containers/FavoriteList"));
+const CharacterDetail =React.lazy(()=>import("./components/CharacterDetail"))
 const Login = React.lazy(() => import("./components/Login"));
 const Register = React.lazy(() => import("./components/Register"));
 const Logout = React.lazy(() => import("./components/Logout"));
@@ -33,6 +34,16 @@ function App() {
               <RequireAuth>
                 <Suspense fallback={<CircularProgress />}>
                   <FavoriteList />
+                </Suspense>
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/detail"
+            element={
+              <RequireAuth>
+                <Suspense fallback={<CircularProgress />}>
+                  <CharacterDetail />
                 </Suspense>
               </RequireAuth>
             }

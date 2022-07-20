@@ -10,7 +10,6 @@ import Variants from "../components/cardSkeleton";
 import { getFavourites } from "../redux/features/favoriteSlice";
 
 function CardList(props) {
-
   const dispatch = useDispatch();
   const userList = useSelector((state) => state.userList);
   const { loading, users, error } = userList;

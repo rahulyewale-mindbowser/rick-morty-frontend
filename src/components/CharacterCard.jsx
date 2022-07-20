@@ -11,12 +11,14 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogTitle from "@mui/material/DialogTitle";
 import Badge from "@mui/material/Badge";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getFavourites } from "../redux/features/favoriteSlice";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import authHeader from "../services/authHeader";
+
 export default function CharacterCard({ data }) {
-  
+  const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
   const dispatch = useDispatch();
   const favorite = useSelector((state) => state.favouriteList);
@@ -101,12 +103,16 @@ export default function CharacterCard({ data }) {
       });
   };
   // console.log(props.data.name);
+  const handleOnImageClick = () => {
+    navigate("/detail", { state: { data } });
+  };
   return (
     <Card
       sx={{ maxWidth: 300, height: 400 }}
       style={{
-        boxShadow: " 0 20px 25px rgba(0,0,0,0.55)",
+        boxShadow: " 0 20px 20px rgba(0,0,0,0.55)",
         position: "relative",
+        borderRadius:"1rem"
       }}
     >
       {user ? (
@@ -126,6 +132,7 @@ export default function CharacterCard({ data }) {
         alt={data.name + "image"}
         src={data.image}
         sx={{ width: 200, height: 200, margin: "auto" }}
+        onClick={handleOnImageClick}
       />
       {data.status === "Alive" ? (
         <Badge

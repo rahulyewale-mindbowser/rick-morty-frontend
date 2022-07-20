@@ -12,6 +12,7 @@ const Logout = () => {
     const handleYes = () => {
        localStorage.removeItem('user');
         setOpen(false);
+        window.location.reload(true);
         navigate('../')
         
       };

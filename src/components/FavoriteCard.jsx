@@ -18,7 +18,7 @@ import authHeader from "../services/authHeader";
 export default function FavoriteCard({ data }) {
   const [open, setOpen] = React.useState(false);
   const dispatch = useDispatch();
-  console.log(data);
+  // console.log(data);
   const handleClickOpen = () => {
     setOpen(true);
   };

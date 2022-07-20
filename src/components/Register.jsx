@@ -1,4 +1,3 @@
-
 import * as React from "react";
 import axios from "axios";
 import Avatar from "@mui/material/Avatar";
@@ -18,46 +17,49 @@ import { useNavigate } from "react-router-dom";
 
 const validationSchema = yup.object({
   firstname: yup
-      .string("Enter First Name")
-      .matches(/^[A-Za-z ]*$/, 'Please enter valid name')
-      .max(30)
-      .required("FirstName is required"),
+    .string("Enter First Name")
+    .matches(/^[A-Za-z ]*$/, "Please enter valid name")
+    .max(30)
+    .required("FirstName is required"),
   lastname: yup
-      .string()
-      .matches(/^[A-Za-z ]*$/, 'Please enter valid name')
-      .max(30)
-      .required("LastName is required"),
+    .string()
+    .matches(/^[A-Za-z ]*$/, "Please enter valid name")
+    .max(30)
+    .required("LastName is required"),
   email: yup
     .string("Enter your email")
     .email("Enter a valid email")
     .required("Email is required"),
   password: yup
     .string("Enter your password")
-    .min(8, "Password should be of minimum 8 characters length")
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+      "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+    )
     .required("Password is required"),
 });
 
 const theme = createTheme();
 
 export default function Register() {
-  const navigate =useNavigate()
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
-      firstname:"",
-      lastname:"",
-      date:"1980-05-24",
-      address:"",
-      company:"",
+      firstname: "",
+      lastname: "",
+      date: "1980-05-24",
+      address: "",
+      company: "",
       email: "",
       password: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
       // alert(JSON.stringify(values, null, 4));
-      const firstname =values.firstname;
-      const lastname =values.lastname
-      const email =values.email
-      const password =values.password
+      const firstname = values.firstname;
+      const lastname = values.lastname;
+      const email = values.email;
+      const password = values.password;
       const configuration = {
         method: "post",
         url: "https://nodejs-mongodb-rickmorty.herokuapp.com/rick-morty/signup",
@@ -66,20 +68,20 @@ export default function Register() {
           firstname,
           lastname,
           email,
-          password  
+          password,
         },
       };
-          // make the API call
-    axios(configuration)
-    .then((result) => {
-      // setLogin(true);
-      console.log(result);
-      alert("User Registered successfully")
-      navigate('../')
-    })
-    .catch((error) => {
-      error = new Error();
-    });
+      // make the API call
+      axios(configuration)
+        .then((result) => {
+          // setLogin(true);
+          console.log(result);
+          alert("User Registered successfully");
+          navigate("../");
+        })
+        .catch((error) => {
+          error = new Error();
+        });
     },
   });
   return (
@@ -88,15 +90,15 @@ export default function Register() {
         <CssBaseline />
         <Box
           sx={{
-            margin:10,
+            margin: 10,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            justifyItems:"center",
-            bgcolor:"#F7F7F7",
-            padding:2,
+            justifyItems: "center",
+            bgcolor: "#F7F7F7",
+            padding: 2,
             // border:1,
-            borderRadius:5
+            borderRadius: 5,
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
@@ -105,7 +107,12 @@ export default function Register() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate sx={{ mt: 3 }} onSubmit={formik.handleSubmit}>
+          <Box
+            component="form"
+            noValidate
+            sx={{ mt: 3 }}
+            onSubmit={formik.handleSubmit}
+          >
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -118,8 +125,12 @@ export default function Register() {
                   autoFocus
                   value={formik.values.firstname}
                   onChange={formik.handleChange}
-                  error={formik.touched.firstname && Boolean(formik.errors.firstname)}
-                  helperText={formik.touched.firstname && formik.errors.firstname}
+                  error={
+                    formik.touched.firstname && Boolean(formik.errors.firstname)
+                  }
+                  helperText={
+                    formik.touched.firstname && formik.errors.firstname
+                  }
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -132,7 +143,9 @@ export default function Register() {
                   autoComplete="family-name"
                   value={formik.values.lastname}
                   onChange={formik.handleChange}
-                  error={formik.touched.lastname && Boolean(formik.errors.lastname)}
+                  error={
+                    formik.touched.lastname && Boolean(formik.errors.lastname)
+                  }
                   helperText={formik.touched.lastname && formik.errors.lastname}
                 />
               </Grid>
@@ -168,15 +181,14 @@ export default function Register() {
                 />
               </Grid>
               <Grid item xs={12}>
-
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ height:55}}
-            >
-              Sign Up
-            </Button>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ height: 55 }}
+                >
+                  Sign Up
+                </Button>
               </Grid>
             </Grid>
             <Grid container justifyContent="flex-end">

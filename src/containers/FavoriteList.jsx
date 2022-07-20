@@ -1,6 +1,6 @@
 import React from "react";
 // import { Grid } from "@material-ui/core";
-import Grid from "@mui/material/Grid"
+import Grid from "@mui/material/Grid";
 import { useDispatch, useSelector } from "react-redux";
 // import CharacterCard from '../components/CharacterCard';
 import FavoriteCard from "../components/FavoriteCard";
@@ -11,7 +11,7 @@ import { getFavourites } from "../redux/features/favoriteSlice";
 const FavoriteList = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getFavourites());
+     dispatch(getFavourites())
   }, [dispatch]);
   const FavoriteList = useSelector((state) => state.favouriteList.favourites);
   //   const {favorites} =FavoriteList
